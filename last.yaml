@@ -1,0 +1,43 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: cluster-staticip
+spec:
+  upstream:
+    repo: baremetal-packages
+    package: kubeadm-cluster-template-staticip
+    revision: -1
+    workspaceName: main
+  downstream:
+    repo: mgmt
+    package: cluster-staticip
+  annotations:
+    approval.nephio.org/policy: initial
+  pipeline:
+    mutators:
+      - image: "gcr.io/kpt-fn/apply-setters:v0.2.0"
+        configMap:
+          cluster-name: staticip-cluster
+          namespace-value: default
+          # --- YOUR CORRECTED FREE IP HERE ---
+          ctrl-plane-ip: "10.200.105.52"
+          ippool-start-ip: "10.200.105.52"
+          ippool-end-ip: "10.200.105.52"
+          # ---------------------------------
+          ctrl-plane-port: "6443" 
+          k8s-version: v1.29.0
+          img-checksum: "dummy-checksum"
+          img-checksum-type: "sha256"
+          img-format: "raw"
+          img-url: "http://dummy.image/dummy.img"
+          ippool-prefix: "24"
+          net-link-eth-id: "ens4f0"
+          net-link-eth-mac-addr: "3c:fd:fe:ef:0e:f4"
+          net-svc-dns: |
+            - 10.200.105.1
+          net-ipv4-gw: 10.200.105.1
+          net-ipv4-nw-addr: 0.0.0.0
+          ctrl-node-user: "rehanfazal"
+          ctrl-node-hashed-passwd: ""
+          ctrl-node-ssh-key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCyAQLtheG6nKy4tZymB5VvEZZ7dcFbjJGlWQiSWddBDIoWv/cLL7QvY59qhlk84FsHtJLqHsziwGUf4zRxeIQl5K2xP541YPJqjCnD3EVbEZ00Bo+WLZwKE3z6Gu94/d9kWfht3tAG/9wcrs49FZEpVHdqCgNoJpQY27c4iAHsrXHyLKOeFougrQKXgmFpRq5nW+va7lI5zMfl+tuu5GxHKj443X8lfy7qL6e0r7qp2i4MmeKAdr1udcHaZlrAP6KtoOca5Gf4LyvofivOeA5eQR/KGIyIiofJ8em4AlPmF9JTaLoJGiB2fTixS+4ES8tXRoKWwcNekXcIk9UZ9Z01si4988oq/gv/pTF26mbYh2zInhO0FYreEpbvtFG9LKSyovhbc8AdfgSZ/lxgYWqrE2KVp6KNkC+YnN01KolP70nAcjdBFYFxblWZIvEYFg/ZoeYKiIVKVzaxMUj/JrnVM8uGTEcG54fqkLjy9ajNmAzRLK++MVnQSkEaSsnEyU3ivNCINLeRXCE15fNHhdBdU196wK97buY/3/3GzJBckTTHwl1HhAf58ECeFMdGLeUh8lETEsiPBtsk1NIukdocDuCIzamOvjYR31TeujKhDMcoPPBPC0AViGStZQ+mRcDAq2582RtPep59M0MGRc4FHwm9B5Q0kITY/8aLvHPHfw== rehanfazal@nephio'
+

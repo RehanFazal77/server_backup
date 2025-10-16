@@ -1,0 +1,75 @@
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"metal3.io/v1alpha1","kind":"BareMetalHost","metadata":{"annotations":{},"labels":{"cluster-role":"control-plane","cluster.x-k8s.io/cluster-name":"smo"},"name":"bmh-smo-hpe15","namespace":"default"},"spec":{"automatedCleaningMode":"metadata","bootMACAddress":"3c:fd:fe:ef:0e:f4","bootMode":"UEFI","consumerRef":{"apiVersion":"infrastructure.cluster.x-k8s.io/v1beta1","kind":"Metal3Machine","name":"smo-control-plane-n9bgp","namespace":"default"},"externallyProvisioned":true,"online":true}}
+  creationTimestamp: "2025-10-14T14:18:22Z"
+  finalizers:
+  - baremetalhost.metal3.io
+  generation: 3
+  labels:
+    cluster-role: control-plane
+    cluster.x-k8s.io/cluster-name: smo
+  name: bmh-smo-hpe15
+  namespace: default
+  ownerReferences:
+  - apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+    controller: true
+    kind: Metal3Machine
+    name: smo-control-plane-n9bgp
+    uid: 1ec0c1cd-8292-4495-bd57-95d32911337e
+  resourceVersion: "550732"
+  uid: d4994f6f-eff8-41cd-b848-6a32d4e2ad38
+spec:
+  automatedCleaningMode: metadata
+  bmc:
+    address: ""
+    credentialsName: ""
+  bootMACAddress: 3c:fd:fe:ef:0e:f4
+  bootMode: UEFI
+  consumerRef:
+    apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+    kind: Metal3Machine
+    name: smo-control-plane-n9bgp
+    namespace: default
+  externallyProvisioned: true
+  image:
+    checksum: http://localhost/dummy.qcow2.sha256
+    url: http://localhost/dummy.qcow2
+  metaData:
+    name: smo-control-plane-n9bgp-metadata
+    namespace: default
+  networkData:
+    name: smo-control-plane-n9bgp-networdata
+    namespace: default
+  online: true
+  userData:
+    name: smo-control-plane-n9bgp
+    namespace: default
+status:
+  errorCount: 0
+  errorMessage: ""
+  goodCredentials: {}
+  lastUpdated: "2025-10-14T14:18:22Z"
+  operationHistory:
+    deprovision:
+      end: null
+      start: null
+    inspect:
+      end: null
+      start: null
+    provision:
+      end: null
+      start: null
+    register:
+      end: null
+      start: null
+  operationalStatus: discovered
+  poweredOn: false
+  provisioning:
+    ID: ""
+    image:
+      url: ""
+    state: unmanaged
+  triedCredentials: {}

@@ -1,0 +1,20 @@
+total 1657636
+-rw-rw-r-- 1 rehanfazal rehanfazal        281 Oct 13 16:17 Kptfile
+-rw-rw-r-- 1 rehanfazal rehanfazal 1695832576 Jan 28  2025 UBUNTU_22.04_NODE_IMAGE_K8S_v1.29.0.qcow2
+-rw-rw-r-- 1 rehanfazal rehanfazal       2270 Oct 14 14:19 bmh-backup.yaml
+-rwxrwxr-x 1 rehanfazal rehanfazal       1848 Oct 14 11:34 capi_clean.sh
+-rw-r--r-- 1 rehanfazal rehanfazal    1496573 Oct 13 16:29 cluster.log
+-rw-rw-r-- 1 rehanfazal rehanfazal       7576 Oct 16 04:06 cont.yaml
+-rwxrwxr-x 1 rehanfazal rehanfazal       3298 Oct 14 11:34 done.sh
+-rwxrwxr-x 1 rehanfazal rehanfazal       1547 Oct 14 11:58 fclean.sh
+-rwxrwxr-x 1 rehanfazal rehanfazal       2558 Oct 14 12:01 fixed.sh
+drwxrwxr-x 3 rehanfazal rehanfazal       4096 Oct 14 09:54 go
+-rw-rw-r-- 1 rehanfazal rehanfazal       2057 Oct 16 09:45 last.yaml
+-rwxrwxr-x 1 rehanfazal rehanfazal       6155 Oct 14 13:27 master.sh
+drwxrwxr-x 3 rehanfazal rehanfazal       4096 Oct 16 08:05 mgmt
+-rwxrwxr-x 1 rehanfazal rehanfazal       6786 Oct 13 12:00 nephio_mgmt.sh
+-rw-rw-r-- 1 rehanfazal rehanfazal       3519 Oct 16 04:31 pkg_v.yaml
+-rwxrwxr-x 1 rehanfazal rehanfazal       1180 Oct 14 13:34 rm.sh
+drwxrwxr-x 4 rehanfazal rehanfazal       4096 Oct 16 10:02 server_backup
+drwxr-xr-x 9 rehanfazal rehanfazal       4096 Oct 13 15:49 test-infra
+-rw-rw-r-- 1 rehanfazal rehanfazal          0 Oct 16 10:02 time_sort.log

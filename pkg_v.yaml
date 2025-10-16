@@ -1,0 +1,101 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"config.porch.kpt.dev/v1alpha1","kind":"PackageVariant","metadata":{"annotations":{},"name":"bmh-hpe15","namespace":"default"},"spec":{"annotations":{"approval.nephio.org/policy":"initial"},"downstream":{"package":"bmh-hpe15","repo":"mgmt"},"pipeline":{"mutators":[{"configMap":{"bmc-address":"","bmc-creds-name":"bmc-secret-dummy","bmc-password":"","bmc-username":"","bmh-name":"bmh-smo-hpe15","boot-mac-address":"3c:fd:fe:ef:0e:f4","root-hints-serial-number":""},"image":"gcr.io/kpt-fn/apply-setters:v0.2.0"}]},"upstream":{"package":"bmh-template","repo":"baremetal-packages","revision":-1,"workspaceName":"main"}}}
+  creationTimestamp: "2025-10-16T04:30:20Z"
+  finalizers:
+  - config.porch.kpt.dev/packagevariants
+  generation: 1
+  name: bmh-hpe15
+  namespace: default
+  resourceVersion: "1440031"
+  uid: 1d57736e-c7a2-4207-be1e-d29e9d3de078
+spec:
+  annotations:
+    approval.nephio.org/policy: initial
+  downstream:
+    package: bmh-hpe15
+    repo: mgmt
+  pipeline:
+    mutators:
+    - configMap:
+        bmc-address: ""
+        bmc-creds-name: bmc-secret-dummy
+        bmc-password: ""
+        bmc-username: ""
+        bmh-name: bmh-smo-hpe15
+        boot-mac-address: 3c:fd:fe:ef:0e:f4
+        root-hints-serial-number: ""
+      image: gcr.io/kpt-fn/apply-setters:v0.2.0
+  upstream:
+    package: bmh-template
+    repo: baremetal-packages
+    revision: -1
+    workspaceName: main
+status:
+  conditions:
+  - lastTransitionTime: "2025-10-16T04:30:21Z"
+    message: all validation checks passed
+    reason: Valid
+    status: "False"
+    type: Stalled
+  - lastTransitionTime: "2025-10-16T04:30:29Z"
+    message: successfully ensured downstream package variant
+    reason: NoErrors
+    status: "True"
+    type: Ready
+  downstreamTargets:
+  - name: mgmt.bmh-hpe15.packagevariant-1
+    renderStatus:
+      error: ""
+      result:
+        apiVersion: kpt.dev/v1
+        exitCode: 0
+        items:
+        - exitCode: 0
+          image: gcr.io/kpt-fn/apply-setters:v0.2.0
+          results:
+          - field:
+              path: metadata.name
+            file:
+              path: bmc-secrets.yaml
+            message: set field value to "bmc-secret-dummy"
+          - field:
+              path: data.username
+            file:
+              path: bmc-secrets.yaml
+            message: set field value to ""
+          - field:
+              path: data.password
+            file:
+              path: bmc-secrets.yaml
+            message: set field value to ""
+          - field:
+              path: metadata.name
+            file:
+              path: bmh-template.yaml
+            message: set field value to "bmh-smo-hpe15"
+          - field:
+              path: spec.bootMACAddress
+            file:
+              path: bmh-template.yaml
+            message: set field value to "3c:fd:fe:ef:0e:f4"
+          - field:
+              path: spec.rootDeviceHints.serialNumber
+            file:
+              path: bmh-template.yaml
+            message: set field value to ""
+          - field:
+              path: spec.bmc.address
+            file:
+              path: bmh-template.yaml
+            message: set field value to ""
+          - field:
+              path: spec.bmc.credentialsName
+            file:
+              path: bmh-template.yaml
+            message: set field value to "bmc-secret-dummy"
+        kind: FunctionResultList
+        metadata: {}

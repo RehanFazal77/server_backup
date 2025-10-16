@@ -1,0 +1,206 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    cni.projectcalico.org/containerID: 7f16fa1c73429d05a0a437d138484cc523711487952796a42ca0af3d925b8b1f
+    cni.projectcalico.org/podIP: 192.168.141.22/32
+    cni.projectcalico.org/podIPs: 192.168.141.22/32
+  creationTimestamp: "2025-10-13T15:55:43Z"
+  generateName: capm3-controller-manager-5c6df7c9cb-
+  labels:
+    cluster.x-k8s.io/provider: infrastructure-metal3
+    control-plane: controller-manager
+    controller-tools.k8s.io: "1.0"
+    pod-template-hash: 5c6df7c9cb
+  name: capm3-controller-manager-5c6df7c9cb-m4blm
+  namespace: capm3-system
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: capm3-controller-manager-5c6df7c9cb
+    uid: 78bd9ba6-9e0d-4078-96ff-f94a44f9e88e
+  resourceVersion: "51727"
+  uid: b25f8306-8ef9-4698-9408-47b043267bf4
+spec:
+  containers:
+  - args:
+    - --webhook-port=9443
+    - --enableBMHNameBasedPreallocation=false
+    - --diagnostics-address=:8443
+    - --insecure-diagnostics=false
+    - --tls-min-version=VersionTLS13
+    command:
+    - /manager
+    env:
+    - name: POD_NAMESPACE
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.namespace
+    envFrom:
+    - configMapRef:
+        name: capm3-capm3fasttrack-configmap
+    image: quay.io/metal3-io/cluster-api-provider-metal3:v1.9.0
+    imagePullPolicy: IfNotPresent
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /healthz
+        port: healthz
+        scheme: HTTP
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    name: manager
+    ports:
+    - containerPort: 9443
+      name: webhook-server
+      protocol: TCP
+    - containerPort: 9440
+      name: healthz
+      protocol: TCP
+    - containerPort: 8443
+      name: metrics
+      protocol: TCP
+    readinessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /readyz
+        port: healthz
+        scheme: HTTP
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      privileged: false
+      runAsGroup: 65532
+      runAsUser: 65532
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: FallbackToLogsOnError
+    volumeMounts:
+    - mountPath: /tmp/k8s-webhook-server/serving-certs
+      name: cert
+      readOnly: true
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-knhm9
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: nephio
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext:
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+  serviceAccount: capm3-manager
+  serviceAccountName: capm3-manager
+  terminationGracePeriodSeconds: 10
+  tolerations:
+  - effect: NoSchedule
+    key: node-role.kubernetes.io/master
+  - effect: NoSchedule
+    key: node-role.kubernetes.io/control-plane
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: cert
+    secret:
+      defaultMode: 420
+      secretName: capm3-webhook-service-cert
+  - name: kube-api-access-knhm9
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2025-10-13T15:55:49Z"
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2025-10-13T15:55:43Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2025-10-13T16:54:01Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2025-10-13T16:54:01Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2025-10-13T15:55:43Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://624d5f131dd18e14348061ca74d009ffa933ce1c08966cca9fe921db6af5f7ec
+    image: quay.io/metal3-io/cluster-api-provider-metal3:v1.9.0
+    imageID: quay.io/metal3-io/cluster-api-provider-metal3@sha256:2eb1201064a961af543ed9d15a38688177547aed3870e6086af2f749e61808b9
+    lastState:
+      terminated:
+        containerID: containerd://2a2e9634f369db59495d6e463f8b569f07da7554ecaaa838a7bbc2bf88a4bbdc
+        exitCode: 1
+        finishedAt: "2025-10-13T16:15:29Z"
+        message: |
+          atemplate" controllerGroup="infrastructure.cluster.x-k8s.io" controllerKind="Metal3DataTemplate"
+          I1013 16:15:29.698011       1 controller.go:239] "All workers finished" controller="metal3remediation" controllerGroup="infrastructure.cluster.x-k8s.io" controllerKind="Metal3Remediation"
+          I1013 16:15:29.698101       1 internal.go:550] "Stopping and waiting for caches"
+          W1013 16:15:29.700325       1 reflector.go:484] pkg/mod/k8s.io/client-go@v0.31.4/tools/cache/reflector.go:243: watch of *v1beta1.Metal3DataTemplate ended with: an error on the server ("unable to decode an event from the watch stream: context canceled") has prevented the request from succeeding
+          E1013 16:15:29.703032       1 kind.go:71] "if kind is a CRD, it should be installed before calling Start" err="no matches for kind \"BareMetalHost\" in version \"metal3.io/v1alpha1\"" logger="controller-runtime.source.EventHandler" kind="BareMetalHost.metal3.io"
+          I1013 16:15:29.705927       1 internal.go:554] "Stopping and waiting for webhooks"
+          E1013 16:15:29.705974       1 kind.go:71] "if kind is a CRD, it should be installed before calling Start" err="no matches for kind \"BareMetalHost\" in version \"metal3.io/v1alpha1\"" logger="controller-runtime.source.EventHandler" kind="BareMetalHost.metal3.io"
+          I1013 16:15:29.706025       1 server.go:249] "Shutting down webhook server with timeout of 1 minute" logger="controller-runtime.webhook"
+          I1013 16:15:29.706150       1 internal.go:557] "Stopping and waiting for HTTP servers"
+          I1013 16:15:29.706189       1 server.go:254] "Shutting down metrics server with timeout of 1 minute" logger="controller-runtime.metrics"
+          I1013 16:15:29.706231       1 server.go:68] "shutting down server" name="health probe" addr="[::]:9440"
+          I1013 16:15:29.706364       1 internal.go:561] "Wait completed, proceeding to shutdown the manager"
+          E1013 16:15:29.706399       1 main.go:211] "problem running manager" err="failed to wait for baremetalhost caches to sync: timed out waiting for cache to be synced for Kind *v1alpha1.BareMetalHost" logger="setup"
+        reason: Error
+        startedAt: "2025-10-13T16:13:29Z"
+    name: manager
+    ready: true
+    restartCount: 7
+    started: true
+    state:
+      running:
+        startedAt: "2025-10-13T16:20:40Z"
+  hostIP: 10.200.105.53
+  hostIPs:
+  - ip: 10.200.105.53
+  phase: Running
+  podIP: 192.168.141.22
+  podIPs:
+  - ip: 192.168.141.22
+  qosClass: BestEffort
+  startTime: "2025-10-13T15:55:43Z"
