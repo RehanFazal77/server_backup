@@ -18,3 +18,24 @@ drwxrwxr-x 3 rehanfazal rehanfazal       4096 Oct 16 08:05 mgmt
 drwxrwxr-x 4 rehanfazal rehanfazal       4096 Oct 16 10:02 server_backup
 drwxr-xr-x 9 rehanfazal rehanfazal       4096 Oct 13 15:49 test-infra
 -rw-rw-r-- 1 rehanfazal rehanfazal          0 Oct 16 10:02 time_sort.log
+
+Chronological Order (latest modified)
+time_sort.log — Oct 16 10:02
+server_backup/ — Oct 16 10:02
+last.yaml — Oct 16 09:45
+mgmt/ — Oct 16 08:05
+pkg_v.yaml — Oct 16 04:31
+cont.yaml — Oct 16 04:06
+bmh-backup.yaml — Oct 14 14:19
+master.sh — Oct 14 13:27
+rm.sh — Oct 14 13:34
+fixed.sh — Oct 14 12:01
+fclean.sh — Oct 14 11:58
+done.sh — Oct 14 11:34
+capi_clean.sh — Oct 14 11:34
+go/ — Oct 14 09:54
+cluster.log — Oct 13 16:29
+Kptfile — Oct 13 16:17
+test-infra/ — Oct 13 15:49
+nephio_mgmt.sh — Oct 13 12:00
+UBUNTU_22.04_NODE_IMAGE_K8S_v1.29.0.qcow2 — Jan 28 2025
