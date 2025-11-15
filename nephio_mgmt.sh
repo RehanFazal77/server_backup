@@ -8,7 +8,7 @@ set -e
 
 echo "=========================================="
 echo "Kubernetes v1.29.0 Installation Script"
-echo "CNI: Calico"
+echo "CNI: Calico" #update the CNI part to use different CNI(falnnel)
 echo "Pod CIDR: 192.168.0.0/16"
 echo "=========================================="
 
